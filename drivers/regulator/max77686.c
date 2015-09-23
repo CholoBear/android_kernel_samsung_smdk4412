@@ -670,7 +670,7 @@ static __devinit int max77686_pmic_probe(struct platform_device *pdev)
 	int i, ret, size, err;
 	u8 data = 0;
 
-	printk(PMIC_DEBUG "%s\n", __func__);
+	pr_debug("%s\n", __func__);
 
 	if (!pdata) {
 		dev_err(pdev->dev.parent, "No platform init data supplied.\n");
@@ -700,7 +700,7 @@ static __devinit int max77686_pmic_probe(struct platform_device *pdev)
 
 	max77686_read_reg(i2c, MAX77686_REG_DEVICE_ID, &data);
 	max77686->device_id = (data & 0x7);
-	printk(PMIC_DEBUG "%s: DEVICE ID=0x%x\n", __func__, data);
+	pr_debug("%s: DEVICE ID=0x%x\n", __func__, data);
 
 	/*
 	 * TODO
@@ -880,7 +880,7 @@ static struct platform_driver max77686_pmic_driver = {
 
 static int __init max77686_pmic_init(void)
 {
-	printk(PMIC_DEBUG "%s\n", __func__);
+	pr_debug("%s\n", __func__);
 
 	return platform_driver_register(&max77686_pmic_driver);
 }
