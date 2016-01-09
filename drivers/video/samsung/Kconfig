@@ -51,7 +51,7 @@ config FB_S5P_VSYNC_SEND_UEVENTS
 config FB_S5P_VSYNC_SYSFS
     bool "S5P Framebuffer vsync via sysfs"
     depends on FB_S5P_VSYNC_THREAD
-    default n
+    default y
     help
     A more efficient method of passing vsync to userspace that doesn't
     broadcast uevents.
