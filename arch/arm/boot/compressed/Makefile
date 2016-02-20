@@ -5,7 +5,7 @@
 #
 
 OBJS		=
-
+plus_sec := $(call as-instr,.arch_extension sec,+sec)
 # Ensure that mmcif loader code appears early in the image
 # to minimise that number of bocks that have to be read in
 # order to load it.
@@ -21,6 +21,9 @@ AFLAGS_head.o += -DTEXT_OFFSET=$(TEXT_OFFSET)
 ifeq ($(CONFIG_CRYPTO_FIPS),y)
 AFLAGS_head.o += -DFIPS_KERNEL_RAM_BASE=0x40008000
 endif
+AFLAGS_head.o += -Wa,-march=armv7-a$(plus_sec)
+AFLAGS_misc.o += -Wa,-march=armv7-a$(plus_sec)
+AFLAGS_decompress.o += -Wa,-march=armv7-a$(plus_sec)
 HEAD	= head.o
 OBJS	+= misc.o decompress.o
 FONTC	= $(srctree)/drivers/video/console/font_acorn_8x8.c
